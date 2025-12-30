@@ -48,9 +48,64 @@ Each paste is stored as a Redis key with metadata including:
 
 ## Running Locally
 
-### 1. Clone the repository
+###  1. Clone the repository
 ```bash
 git clone https://github.com/Nagatriveni2910/pastebin-lite.git
 cd pastebin-lite
+```
 
-### 2. Install dependencies
+###  2. Install dependencies
+```bash
+npm install
+```
+
+
+### 3. Create .env.local
+```env
+UPSTASH_REDIS_REST_URL=your_upstash_url
+UPSTASH_REDIS_REST_TOKEN=your_upstash_token
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+### 4. Run the app
+```bash
+npm run dev
+```
+###  Open 
+```bash
+http://localhost:3000
+```
+
+## API Routes
+
+### Health Check
+```bash
+GET /api/healthz
+```
+
+### Create Paste
+```bash
+POST /api/pastes
+```
+
+### Fetch Paste (API)
+```bash
+Fetch Paste (API)
+```
+
+### View Paste (HTML)
+```bash
+View Paste (HTML)
+```
+
+## Testing Mode
+To support deterministic expiry testing, the app supports:
+```env
+TEST_MODE=1
+```
+
+When enabled, the request header:
+
+## x-test-now-ms
+
+is treated as the current time for expiry logic.
