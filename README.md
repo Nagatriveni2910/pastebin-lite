@@ -152,9 +152,9 @@ is treated as the current time for expiry logic.
 
 - Test mode supported using:
 
-      * TEST_MODE=1
+ *  TEST_MODE=1
 
-      * x-test-now-ms request header
+ * x-test-now-ms request header
 
   ## Deployment
 - The app is deployed on Vercel and connected to GitHub for CI/CD.
