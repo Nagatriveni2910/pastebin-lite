@@ -83,20 +83,55 @@ http://localhost:3000
 GET /api/healthz
 ```
 
+#### Response:
+```bash
+json
+{ "ok": true }
+```
+
 ### Create Paste
 ```bash
 POST /api/pastes
 ```
 
-### Fetch Paste (API)
+#### Request Body:
 ```bash
-Fetch Paste (API)
+json
+{
+  "content": "Hello Pastebin Lite",
+  "ttl_seconds": 60,
+  "max_views": 5
+}
 ```
 
-### View Paste (HTML)
+#### Response:
 ```bash
-View Paste (HTML)
+json
+{
+  "id": "abc123",
+  "url": "http://localhost:3000/p/abc123"
+}
 ```
+
+### Fetch Paste (API)
+```bash
+GET /api/pastes/:id
+```
+
+#### Response:
+```bash
+{
+  "content": "Hello Pastebin Lite",
+  "remaining_views": 4,
+  "expires_at": "2026-01-01T00:00:00.000Z"
+}
+```
+
+### View a Paste (UI)
+```bash
+GET /p/:id
+```
+Returns an HTML page showing the paste content.
 
 ## Testing Mode
 To support deterministic expiry testing, the app supports:
@@ -109,3 +144,21 @@ When enabled, the request header:
 ## x-test-now-ms
 
 is treated as the current time for expiry logic.
+
+## Notes & Design Decisions
+
+- Redis keys are stored as paste:<id>
+
+- View count is decremented atomically
+
+- TTL and view constraints are enforced strictly
+
+- Test mode supported using:
+
+      - TEST_MODE=1
+
+      - x-test-now-ms request header
+
+  ## Deployment
+The app is deployed on Vercel and connected to GitHub for CI/CD.
+Environment variables are configured in the Vercel dashboard.
