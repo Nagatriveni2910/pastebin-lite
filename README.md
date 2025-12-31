@@ -85,7 +85,6 @@ GET /api/healthz
 
 #### Response:
 ```bash
-json
 { "ok": true }
 ```
 
@@ -96,7 +95,6 @@ POST /api/pastes
 
 #### Request Body:
 ```bash
-json
 {
   "content": "Hello Pastebin Lite",
   "ttl_seconds": 60,
@@ -106,7 +104,6 @@ json
 
 #### Response:
 ```bash
-json
 {
   "id": "abc123",
   "url": "http://localhost:3000/p/abc123"
